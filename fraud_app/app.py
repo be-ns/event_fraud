@@ -67,7 +67,7 @@ def score():
     with open('cost.txt') as f:
         cost = int(f.read())
 
-    expected_pl = prob/100 * (benefit - cost) - (1 - prob/100) * cost
+    expected_pl = round(prob/100 * (benefit - cost) - (1 - prob/100) * cost, 2)
     data_list = [thresh, prob, expected_pl]
 
 
