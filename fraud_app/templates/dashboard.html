@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %}Index{% endblock %}
+{% block head %}
+  {{ super() }}
+  <style type="text/css">
+    .important { color: #336699; }
+  </style>
+{% endblock %}
+{% block content %}
+    <!-- <div class="container title-text">
+        Dashboard
+    </div> -->
+    <div class="jumbotron" id="dashboard-jumbo">
+        <img id="profit-curve-pic" src={{ data }}>
+    </div>
+
+    <center><div class="container" id="slider"></div></center>
+
+    </div>
+
+    <p class="important">
+
+    <div id="thresh-line"></div>
+    <div id="slider-val">54</div>
+
+
+
+<script>
+        $( "#slider" ).slider({
+            min:0,
+            max:100,
+            value:55,
+            slide: function( event, ui ) {
+                var pos = $('.ui-slider-handle').offset();
+                $('#thresh-line').css({'left': pos.left+10});
+                $('#slider-val').css({'left': pos.left+1});
+                // alert(pos.left)
+                x = (ui.value);
+                $('#slider-val').html(x);
+            },
+
+        });
+
+        // $("#label").html(labelArr[$( "#slider" ).slider( "value" )]);
+
+
+    // $("#slider").change(function() {
+    //     alert(7);
+    // // $("#slider").slider('values',0,$(this).val());
+    // });
+
+
+
+
+    // var position = $('#slider').slider().offset();
+
+    // alert(position.left)
+</script>
+
+{% endblock %}
