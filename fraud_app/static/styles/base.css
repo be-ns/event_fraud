@@ -1,0 +1,112 @@
+body {
+    background-image: url(../img/vintage-leaves.png);
+}
+
+.navbar {
+    background-color: #4EA9D7;
+}
+
+.navbar-brand {
+    margin-left: 0px;
+    font-size: 24px;
+    color: #E31E81;
+}
+
+.nav-link {
+    font-size: 24px;
+    margin-left: 50px;
+    color: #E31E81;
+}
+
+.jumbotron {
+    text-align: center;
+    background-position: 0% 25%;
+    max-height: 600px;
+    max-width: 800;
+    margin: auto;
+    margin-top: 30px;
+    color: red;
+    padding-top: 80px;
+    padding-bottom: 70px;
+    color: #E31E81;
+    background-color: #fff;
+    border-style: solid;
+    border-radius: 5px;
+    border-color: #E31E81;
+}
+
+#jumbotron-button {
+    margin-top: 10px;
+    color: #E31E81;
+    background-color: #4EA9D7;
+}
+
+
+.title-text {
+    margin-top: 35px;
+    text-align: center;
+    font-size: 40px;
+    color: red;
+}
+
+#slider {
+    margin: 30 30 30 30;
+    max-width: 500px;
+    font-size: 25px;
+    background-color: #E31E81;
+}
+
+.ui-slider .ui-slider-handle {
+    background-color: #4EA9D7 !important;
+}
+
+#slider-val {
+    position: absolute;
+    left: 653px;
+    top: 105px;
+    z-index: 10;
+    font-size: 20px;
+}
+
+.form-inline {
+    font-size: 20px;
+}
+
+.submit-button {
+    background-color: #4EA9D7;
+}
+
+.submit-button:hover {
+    color: #E31E81;
+}
+
+#dashboard-jumbo {
+    margin-top: 50px;
+    min-height: 400px;
+    max-width: 620px;
+    /*background-image: url(../img/temp_profit.png);*/
+    background-size: cover;
+}
+
+#thresh-line {
+    position: absolute;
+    z-index: 10;
+    left: 662px;
+    top: 130px;
+    height: 266px;
+    width: 4px;
+    background-color: #E31E81;
+}
+
+#profit-curve-pic {
+    margin: -80px;
+    max-height: 370px;
+}
+
+#score-jumbo {
+    margin-top: 0px;
+    background-color: #fff;
+    border-style: solid;
+    border-radius: 5px;
+    border-color: #E31E81;
+}

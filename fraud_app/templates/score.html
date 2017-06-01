@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}Index{% endblock %}
+{% block head %}
+  {{ super() }}
+  <style type="text/css">
+    .important { color: #336699; }
+  </style>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.2/raphael-min.js"></script>
+  <script src="../static/js/kuma-gauge.jquery.js"></script>
+{% endblock %}
+{% block content %}
+
+<br>
+<br>
+<br>
+
+
+<div class="container">
+    <div class="jumbotron" id="score-jumbo">
+        <h2>Probability of Fraud</h2>
+        <div class="js-gauge demo gauge" id="score-gauge"></div>
+    </div>
+
+    {{ data }}
+
+</div>
+
+
+
+<script>
+$('.demo').kumaGauge({
+  value : {{ 2 * 100 }},
+  animationSpeed : 1000,
+  showNeedle : false,
+  // background : '#4EA9D7',
+  label : {
+      display: true,
+      left: '0',
+      right: '100',
+      fontColor : '#E31E81',
+      fontSize : 16,
+
+  }
+
+});
+</script>
+
+
+{% endblock %}
