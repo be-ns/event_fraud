@@ -10,7 +10,7 @@ Our [Web App](http://ec2-52-70-42-234.compute-1.amazonaws.com:8150/) allows user
 
 Initial data was grouped into four subcategories which were then munged and transformed by each party using EDA. After building a simple Machine Learning model, the top 3 features from each model were passed along to the main [script](github.com/be-ns/event_fraud/collect_data.py), which compiles all top features into a single DF.
 
-Initial modeling was done with GridSearched Gradient Boosting and Logistic Regression. Gradient Boosting for model accuracy and Logistic Regression for beta analysis. 
+Initial modeling was done with Gradient Boosting and Logistic Regression. Gradient Boosting for model accuracy and Logistic Regression for beta analysis. 
 
 Our web app allows a user to input the cost/benefit for fraud (benefit to catching fraudulent events, cost of investigating an event that is not fraudulent) and outputs a profit curve with an ideal threshold for risk that maximized the profit.
 The results were found using our [Gradient Boosted model](github.com/be-ns/gradient_boosting.py). [F1 score](https://chrisalbon.com/machine-learning/precision_recall_and_F1_scores.html) and Accuracy are given for the model for predicted outputs, not for the user-inputted parameters. 
@@ -30,7 +30,7 @@ We engineered the following features:
 * `User Class` - Leave-One-Out dummy-ized variables for 4 of the 5 user types.
 * `Created to Start` - Utilized timestamp data to measure the elapsed time between when the event was created and when it started.
 
-Special care was taken to ensure all variables were in the correct format (no `Boolean`s were left as `int64`'s). All data was cleaned using Pandas using Python 3.
+Special care was taken to ensure all variables were in the correct format (no `Boolean`s were left as `int64`'s). All data was cleaned using Pandas & Python 3.
 
 _Modeling / Evaluation_:  
 We used F1-score and three fold cross validation to measure the accuracy of the model, since we had unbalanced classes. Normal accuracy meausures would be pointless, since we had less than 10% of data being categorized as Fraudulent. Class balancing was the most vital aspect for our model to be accurate. 
@@ -45,8 +45,8 @@ Our largest Betas from Logistic Regression:
 2. `Previous Payouts` : `-8.3` - (using scaled data) - Implies that the previous payouts (number of events the host has held) were negatively correlated (decreased payouts means increased probability of fraud)
 
 Our most important features for Gradient Boosting Classifier:
-1. `Tickets Left` : The number of unsold tickets (`available tickets minus tickets sold`) was the strongest feature of predicting fraud.
-2. `Body Length` : The length that an advertisement was run for the event was the second most important 
+1. `Tickets Left` : The number of unsold tickets (`available tickets minus tickets sold`) was the strongest fraud predictor.
+2. `Body Length` : The length that of the advertisement text for the event was our second-best predictor.
 
 _Business Understanding_:
 Ultimately the potentialfor fraud was not simply a yes or no. We decided to use a threshold for business action. Since False Negatives (missed fraud) was more risky than False Positives (overly cautious) we wanted to set our initial threshold for action low. We used a Profit Curve to estimate the optimal threshold to increase benefits.  
@@ -67,11 +67,13 @@ Expected Profit / Loss = `(P(fraud) * (benefit of catching fraud - cost of inves
 8. [MatPlotLib](matplotlib.org)
 9. [JQuery](https://jquery.com/) * 
 
-[#### __Flask App__](github.com/be-ns/event_fraud/gradient_boosting.py)
+#### [__Flask App__](github.com/be-ns/event_fraud/gradient_boosting.py)
 
 
 #### __Profit Curves__
-Team needs to fill out 
+At each possible threshold for flagging possibly-fraudulent events, profit per event was calculated as:
+`(cost of investigating - cost of missing fraud)x(True Positive Rate) + (cost of investigating)x(False Positive Rate)`
+We dynamically calculated the profit curve by iterating over all thresholds, given the cost of missing fraud and cost of investigating fraud from a user.  Final results were displayed as profit per 10,000 events.
 
 
 
