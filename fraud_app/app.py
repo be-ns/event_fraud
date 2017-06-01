@@ -66,4 +66,4 @@ if __name__ == '__main__':
     # Start Flask app
     with open('../data/model.pkl', 'rb') as f:
         model = pickle.load(f)
-    app.run(host='0.0.0.0', port=8080, debug=True)
+    app.run(host='0.0.0.0', port=8150, debug=True)
