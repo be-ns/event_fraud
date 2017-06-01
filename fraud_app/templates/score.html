@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Index{% endblock %}
+{% block title %}Score{% endblock %}
 {% block head %}
   {{ super() }}
   <style type="text/css">
@@ -15,14 +15,40 @@
 <br>
 <br>
 
+{% if data[0] < data[1] %}
+    {% set x = "on" %}
+{% else %}
+    {% set x = "off" %}
+{% endif %}
+
 
 <div class="container">
     <div class="jumbotron" id="score-jumbo">
-        <h2>Probability of Fraud</h2>
+        <h2 id="score-title">Probability of Fraud</h2>
         <div class="js-gauge demo gauge" id="score-gauge"></div>
+        <!-- <div class="score-text">Flag for Investigation?</div> -->
+        <form action="/log" method="POST", id='fraud_form'>
+            <div class="score-text">
+                {% if x == "on" %}
+                    <input type="checkbox" name="fraud_flag" value="1" id="flag" form="fraud_form" checked>
+                    <textarea id="hidden-text" rows="1" cols="1" name="text_hidden" form="fraud_form">1</textarea>
+                {% else %}
+                    <input type="checkbox" name="fraud_flag" value="1" id="flag" form="fraud_form">
+                    <textarea id="hidden-text" rows="1" cols="1" name="text_hidden" form="fraud_form">0</textarea>
+                {% endif %}
+                <label for="flag">Flag for Investigation?</label>
+                <br>
+                <label>Expected Profit: 3000 doll hairs</label>
+
+                <input type="submit" value="Submit">
+            </div>
+        </form>
+        <br>
+
+
     </div>
 
-    {{ data }}
+    {{ data[0] }}
 
 </div>
 
@@ -30,7 +56,7 @@
 
 <script>
 $('.demo').kumaGauge({
-  value : {{ 2 * 100 }},
+  value : {{ data[1] }},
   animationSpeed : 1000,
   showNeedle : false,
   // background : '#4EA9D7',

@@ -29,37 +29,30 @@ def personalize():
 
 @app.route('/score', methods=['GET', 'POST'])
 def score():
-
+    thresh = int(request.form['thresh'])
+    prob = 51
     x = requests.get('http://galvanize-case-study-on-fraud.herokuapp.com/data_point').content
     request_json = json.loads(x)
     with open('../data/test_request.json', 'w') as outfile:
         json.dump(request_json, outfile)
-    
 
-    return render_template('score.html', data=request_json)
+    data_list = [thresh, prob]
+
+
+    return render_template('score.html', data=data_list)
+
+@app.route('/log', methods=['GET', 'POST'])
+def log():
+    fraud_val = int(request.form['text_hidden'])
+    return render_template('log.html', data=fraud_val)
 
 @app.route('/write', methods=['POST'])
 def write():
-    df = pd.read_json('../data/subset.json')
-    df.to_pickle('../data/test_write.pkl')
+    # df = pd.read_json('../data/subset.json')
+    # df.to_pickle('../data/test_write.pkl')
     return dashboard()
 
-@app.route('/check')
-def check():
-    line1 = "Number of data points: {0}".format(len(DATA))
-    if DATA and TIMESTAMP:
-        dt = datetime.fromtimestamp(TIMESTAMP[-1])
-        data_time = dt.strftime('%Y-%m-%d %H:%M:%S')
-        line2 = "Latest datapoint received at: {0}".format(data_time)
-        line3 = DATA[-1]
-        output = "{0}\n\n{1}\n\n{2}".format(line1, line2, line3)
-    else:
-        output = line1
-    return output, 200, {'Content-Type': 'text/css; charset=utf-8'}
 
-def register_for_ping(ip, port):
-    registration_data = {'ip': ip, 'port': port}
-    requests.post(REGISTER_URL, data=registration_data)
 
 
 if __name__ == '__main__':
