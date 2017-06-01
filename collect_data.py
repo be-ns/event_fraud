@@ -13,7 +13,8 @@ from datetime import datetime
 This script returns a dataframe X of features chosen by each team member as the most important
 from their assigned subset of the original data, and a dataframe y of labels (fraud or not).
 '''
-with open('data/scaler.pkl','rb') as s:
+
+with open('./data/scaler.pkl','rb') as s:
     scaler = pickle.load(s)
 
 def get_data(filename='data/data.json'):
