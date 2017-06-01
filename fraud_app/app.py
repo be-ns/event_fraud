@@ -6,8 +6,22 @@ import time
 from datetime import datetime
 import pickle
 import pandas as pd
+import time
+import random
+
+
+import sys
+sys.path.insert(0, '..')
+
+import gradient_boosting
+import collect_data
+import profit_curve
+
 
 app = Flask(__name__)
+app.config.update(
+    TEMPLATES_AUTO_RELOAD = True
+)
 
 
 
@@ -17,7 +31,18 @@ def index():
 
 @app.route('/dashboard', methods=['GET', 'POST'])
 def dashboard():
-    pic = 'static/img/temp_profit.png'
+    benefit = int(request.form['benefit'])
+    cost = int(request.form['cost'])
+    text_file = open("benefit.txt", "w")
+    text_file.write("{}".format(benefit))
+    text_file = open("cost.txt", "w")
+    text_file.write("{}".format(cost))
+    text_file.close()
+
+    profit_curve.plot_model_profits(benefit, cost)
+    # time.sleep(5)
+    # pic = 'static/img/temp_profit.png'
+    pic = 'static/img/' + str(benefit) + '_' + str(cost) + '.png'
     return render_template('dashboard.html', data=pic)
 
 @app.route('/personalize')
@@ -27,13 +52,23 @@ def personalize():
 @app.route('/score', methods=['GET', 'POST'])
 def score():
     thresh = int(request.form['thresh'])
-    prob = 51
-    x = requests.get('http://galvanize-case-study-on-fraud.herokuapp.com/data_point').content
-    request_json = json.loads(x)
-    with open('../data/test_request.json', 'w') as outfile:
-        json.dump(request_json, outfile)
 
-    data_list = [thresh, prob]
+    x = requests.get('http://galvanize-case-study-on-fraud.herokuapp.com/data_point').content
+    # request_json = json.loads(x)
+    # with open('../data/request.json', 'w') as outfile:
+    #     json.dump(request_json, outfile)
+
+    # X = collect_data.clean_data(collect_data.get_data('../data/request.json'))
+
+    # prob = predict_proba(model, X, y)
+    prob = random.randint(1,100)
+    with open('benefit.txt') as f:
+        benefit = int(f.read())
+    with open('cost.txt') as f:
+        cost = int(f.read())
+
+    expected_pl = prob/100 * (benefit - cost) - (1 - prob/100) * cost
+    data_list = [thresh, prob, expected_pl]
 
 
     return render_template('score.html', data=data_list)
