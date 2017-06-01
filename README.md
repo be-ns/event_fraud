@@ -5,14 +5,14 @@
 #### __Basic Overview__  
 Done as a case study in part with the [Galvanize Data Science Immersive](https://www.galvanize.com/denver-platte/data-science).
 Data was gathered from confidential source and is not available for public viewing. 
-Initial data was grouped into four subcategories which were then munged and transformed by each party using EDA. After building a simple Machine Learning model, the top 3 features from each model were passed along to the main (script)(github.com/lindseyeggleston/fraud-detection-case-study/collect_data.py), which compiles all top features into a single DF.
+Initial data was grouped into four subcategories which were then munged and transformed by each party using EDA. After building a simple Machine Learning model, the top 3 features from each model were passed along to the main [script](github.com/be-ns/event_fraud/collect_data.py), which compiles all top features into a single DF.
 
 Initial modeling was done with GridSearched Gradient Boosting and Logistic Regression. Gradient Boosting for model accuracy and Logistic Regression for beta analysis.
 
 Outputs from the models are probabilities of Fraud based on the features. Using this we set three threshholds for High Risk, Medium Risk, and Low Risk - which are used in our Web App, hosted by AWS with data storedsecurely in an S3 bucket. 
 
 Our web app allows a user to input the cost/benefit for fraud (benefit to catching fraudulent events, cost of investigating an event that is not fraudulent) and outputs a profit curve with an ideal threshold for risk that maximized the profit.
-The results were found using our [Gradient Boosted model](link to Lindsey's model). F1 score and accuracy are given for the model for predicted outputs, not for the user-generated results. 
+The results were found using our [Gradient Boosted model](github.com/be-ns/gradient_boosting.py). [F1 score](https://chrisalbon.com/machine-learning/precision_recall_and_F1_scores.html) and Accuracy are given for the model for predicted outputs, not for the user-inputted parameters. 
 
 #### __Method__
 We Utilized the [CRISP-DM](https://en.wikipedia.org/wiki/Cross_Industry_Standard_Process_for_Data_Mining) method for Data Mining and time organization.  
@@ -77,4 +77,4 @@ Team needs to fill out
 
 
 
-* All JQuery done by [Parker Stevents](github.com/pstevens33)
+* All JQuery done by [Parker Stevens](github.com/pstevens33)
