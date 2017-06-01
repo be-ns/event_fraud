@@ -7,8 +7,6 @@ from pymongo import MongoClient
 import requests
 import json
 import pickle
-from gradient_boosting import predict_new_proba
-from collect_data import clean_data
 from datetime import datetime
 
 '''
@@ -120,19 +118,20 @@ if __name__ == '__main__':
             # 'user_created', 'user_type', 'venue_address',   'venue_country', 'venue_latitude',
             # 'venue_longitude', 'venue_name', 'venue_state']
 
-    x = requests.get('http://galvanize-case-study-on-fraud.herokuapp.com/data_point').content
-    x_json = json.loads(x)
+    # x = requests.get('http://galvanize-case-study-on-fraud.herokuapp.com/data_point').content
+    # x_json = json.loads(x)
     # client = MongoClient()
     # db = client.pymongo_test
     # post_to_mongo(x_json, db)
 
-    cols = ['tickets_left', 'types_tickets', 'num_previous_payouts',
-       'sale_duration2', 'sale_duration', 'num_order', 'num_payouts',
-       'created-to-start', 'body_length', 'user_type_1', 'user_type_2',
-       'user_type_3', 'user_type_4', 'user_type_5', 'user_type_103']
+    # cols = ['tickets_left', 'types_tickets', 'num_previous_payouts',
+    #    'sale_duration2', 'sale_duration', 'num_order', 'num_payouts',
+    #    'created-to-start', 'body_length', 'user_type_1', 'user_type_2',
+    #    'user_type_3', 'user_type_4', 'user_type_5', 'user_type_103']
     # df = get_data()
     # X,y = clean_data(df, return_y=True)
     # cols = get_column_names(X)
     # print(X.head())
 
-    print(clean_new_data(x_json))
+    # print(clean_new_data(x_json))
+    pass
