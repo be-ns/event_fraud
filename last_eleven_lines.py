@@ -6,14 +6,12 @@ from sklearn.metrics import f1_score as f1
 from sklearn.metrics import accuracy_score as acc
 
 
-def get_data(filename):
+def get_data(df):
     '''
     Reads in dats from the filename (as a JSON file) and then passes a shortened Pandas Dataframe to `parse_ticket_types`.
     INPUT: filepath
     OUTPUT: Passes shortened dataframe to `parse_ticket_types`
     '''
-    # read in file
-    df = pd.read_json(filename)
     #set fraud
     df['fraud'] = df.acct_type.apply(lambda x: 1 if 'fraud' in x else 0)
     # reduce DF to only last eleven columns
@@ -85,7 +83,8 @@ def return_top_three(df2):
 
 if __name__ == '__main__':
     filename = '../fraud-detection-case-study/data.json'
-    df2 = get_data(filename)[-1]
+    df = pd.read_json(filename)
+    df2 = get_data(df)[-1]
     df3 = return_top_three(df2)
     # model = build_model(x_tr, y_tr)
     # f_score, accuracy = score_model(model, x_te, y_te)
