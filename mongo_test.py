@@ -10,7 +10,7 @@ def post_to_mongo(loaded_json, db):
     '''
     posts = db.posts
     result = posts.insert_one(x_json)
-    print('One post: {0}'.format(result.inserted_id))
+    return None
 
 if __name__ == '__main__':
 
