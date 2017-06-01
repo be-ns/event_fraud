@@ -12,7 +12,7 @@
         Dashboard
     </div> -->
     <div class="jumbotron" id="dashboard-jumbo">
-        <textarea id="slider-val" rows="1" cols="1" name="thresh" form="test_form">54</textarea>
+        <textarea id="slider-val" rows="1" cols="1" name="thresh" form="test_form">50</textarea>
         <img id="profit-curve-pic" src={{ data }}>
     </div>
 
@@ -31,12 +31,11 @@
 
 
 
-
 <script>
         $( "#slider" ).slider({
             min:0,
             max:100,
-            value:55,
+            value:50,
             slide: function( event, ui ) {
                 var pos = $('.ui-slider-handle').offset();
                 $('#thresh-line').css({'left': pos.left+10});

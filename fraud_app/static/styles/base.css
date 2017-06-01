@@ -51,7 +51,8 @@ body {
 
 #slider {
     margin: 30 30 30 30;
-    max-width: 500px;
+    margin-left: 100px;
+    max-width: 492px;
     font-size: 25px;
     background-color: #E31E81;
 }
@@ -62,8 +63,8 @@ body {
 
 #slider-val {
     position: absolute;
-    left: 649px;
-    top: 96px;
+    left: 656px;
+    top: 120px;
     z-index: 10;
     font-size: 20px;
 }
@@ -91,16 +92,17 @@ body {
 #thresh-line {
     position: absolute;
     z-index: 10;
-    left: 662px;
-    top: 130px;
-    height: 266px;
-    width: 4px;
+    left: 670px;
+    top: 155px;
+    height: 281px;
+    width: 2px;
     background-color: #E31E81;
 }
 
 #profit-curve-pic {
     margin: -80px;
     max-height: 370px;
+    min-width: 600px;
 }
 
 #score-jumbo {
@@ -113,6 +115,7 @@ body {
 
 #new-data-button {
     color: #E31E81;
+    margin-left: 70px;
 }
 
 #score-title {
@@ -126,4 +129,8 @@ body {
 
 #hidden-text {
     display: none;
+}
+
+.invisible {
+    /*display: none;*/
 }
