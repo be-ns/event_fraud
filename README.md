@@ -1,15 +1,16 @@
 ## FRAUD DETECTION FOR EVENTS
-### Preventing selling fraudulent tickets
+### Predicting the probability of fraud for Event Data.
 #### [Benjamin Siverly](github.com/be-ns), [Parker Stevens](github.com/pstevens33), [Lindsey Eggleston](github.com/lindseyeggleston), [Tim Kahn](github.com/timkahn)
 -------
 #### __Basic Overview__  
 Done as a case study in part with the [Galvanize Data Science Immersive](https://www.galvanize.com/denver-platte/data-science).
-Data was gathered from confidential source and is not available for public viewing. 
+Data was gathered from confidential source and is not available for public viewing.  
+
+Our [Web App](http://ec2-52-70-42-234.compute-1.amazonaws.com:8150/) allows users to interact with out Fraud detection model but inputting the costs / benefits associated with a Fraudulent act, as well as a threshold for action. After doing this, a new data point is pulled from Heroku, passed through our [model](github.com/be-ns/event_fraud/gradient_boosting.py) to receive a probability of the event being fraudulent or not. The data and the prediction are stored in a MongoDB, and the output is shown with a expected profit based on the threshold combined with the costs for action given by the user. 
+
 Initial data was grouped into four subcategories which were then munged and transformed by each party using EDA. After building a simple Machine Learning model, the top 3 features from each model were passed along to the main [script](github.com/be-ns/event_fraud/collect_data.py), which compiles all top features into a single DF.
 
-Initial modeling was done with GridSearched Gradient Boosting and Logistic Regression. Gradient Boosting for model accuracy and Logistic Regression for beta analysis.
-
-Outputs from the models are probabilities of Fraud based on the features. Using this we set three threshholds for High Risk, Medium Risk, and Low Risk - which are used in our Web App, hosted by AWS with data storedsecurely in an S3 bucket. 
+Initial modeling was done with GridSearched Gradient Boosting and Logistic Regression. Gradient Boosting for model accuracy and Logistic Regression for beta analysis. 
 
 Our web app allows a user to input the cost/benefit for fraud (benefit to catching fraudulent events, cost of investigating an event that is not fraudulent) and outputs a profit curve with an ideal threshold for risk that maximized the profit.
 The results were found using our [Gradient Boosted model](github.com/be-ns/gradient_boosting.py). [F1 score](https://chrisalbon.com/machine-learning/precision_recall_and_F1_scores.html) and Accuracy are given for the model for predicted outputs, not for the user-inputted parameters. 
@@ -66,8 +67,8 @@ Expected Profit / Loss = `(P(fraud) * (benefit of catching fraud - cost of inves
 8. [MatPlotLib](matplotlib.org)
 9. [JQuery](https://jquery.com/) * 
 
-#### __Flask App__
-link to flask app hosted on Amazon will go here. 
+[#### __Flask App__](github.com/be-ns/event_fraud/gradient_boosting.py)
+
 
 #### __Profit Curves__
 Team needs to fill out 
