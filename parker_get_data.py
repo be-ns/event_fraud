@@ -9,4 +9,8 @@ def get_data(df):
     df['sale_duration'].fillna(df['sale_duration'].mean(), inplace=True)
     df['num_previous_payouts'] = -1
 
+    for i in df.index.values:
+        df.loc[i,'num_previous_payouts'] = len(df.loc[i,'previous_payouts'])
+        # print(i)
+
     return df[['num_previous_payouts', 'sale_duration2', 'sale_duration']]
