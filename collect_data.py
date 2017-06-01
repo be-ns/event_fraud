@@ -1,11 +1,11 @@
 import pandas as pd
 import last_eleven_lines
 import parker_get_data
-import clean_first
+import clean_1
 from sklearn.preprocessing import StandardScaler
 
 '''
-This script returns a dataframe X of features chosen by each team member as the most important 
+This script returns a dataframe X of features chosen by each team member as the most important
 from their assigned subset of the original data, and a dataframe y of labels (fraud or not).
 '''
 
@@ -15,7 +15,7 @@ def get_data(filename='data/data.json'):
     Inputs:
     -------
     filename: the json file name/path
-    
+
     Output:
     -------
     Pandas DataFrame
@@ -30,7 +30,7 @@ def clean_data(df, return_y=False):
     ------
     df: pandas DataFrame
     return_y: bool, if True it creates a target array from 'acct_type' column
-    
+
     Output:
     -------
     Cleaned pandas DataFrame, and if return_y = True it creates a target array from 'acct_type' column
@@ -58,7 +58,7 @@ def get_column_names(df):
     Input:
     -------
     df: a pandas DataFrame
-    
+
     Output:
     -------
     an array of column names

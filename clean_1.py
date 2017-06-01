@@ -31,7 +31,6 @@ def time_to_dummy(df, col1, col2, name):
     return df
 
 def clean_data(df):
-    df['fraud'] = df.acct_type.apply(lambda x: 1 if 'fraud' in x else 0)
     df['delivery_method'] = df['delivery_method'].apply(lambda x: 1 if x==1.0 else 0)
     fraud = df[df['fraud']==1]
     not_fraud = df[df['fraud']==0]
