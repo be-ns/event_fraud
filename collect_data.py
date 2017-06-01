@@ -14,8 +14,8 @@ This script returns a dataframe X of features chosen by each team member as the 
 from their assigned subset of the original data, and a dataframe y of labels (fraud or not).
 '''
 
-with open('./data/scaler.pkl','rb') as s:
-    scaler = pickle.load(s)
+# with open('./data/scaler.pkl','rb') as s:
+#     scaler = pickle.load(s)
 
 def get_data(filename='data/data.json'):
     '''
@@ -43,20 +43,13 @@ def clean_data(df, return_y=False):
     -------
     Cleaned pandas DataFrame, and if return_y = True it creates a target array from 'acct_type' column
     '''
-    if 'acct_type' in df.columns:
-        y = df.acct_type.apply(lambda x: 1 if 'fraud' in x else 0)
+    y = df.acct_type.apply(lambda x: 1 if 'fraud' in x else 0)
     ben_data = last_eleven_lines.return_top_three(last_eleven_lines.get_data(df)[-1])
     parker_data = parker_get_data.get_data(df)
-    lindsey_data = clean_first.return_import_features(df)
+    lindsey_data = clean_1.return_import_features(df)
     tim_data = df[['num_order', 'num_payouts']]
     X = pd.concat([ben_data, parker_data, tim_data, lindsey_data], axis=1)
     X = pd.get_dummies(X, columns=['user_type'])
-    scaler = StandardScaler()
-    numeric_vars = ['tickets_left', 'types_tickets', 'num_previous_payouts',
-       'sale_duration2', 'sale_duration', 'num_order', 'num_payouts',
-       'created-to-start', 'body_length','venue_name', 'venue_country',
-       'venue_state','user_created']
-    X[numeric_vars] = scaler.fit_transform(X[numeric_vars].values)
     if return_y==True:
         return X, y
     return X
@@ -90,11 +83,16 @@ def clean_new_data(dic):
         new_dict['created-to-start'] = 365-new_dict['event_created']+new_dict['event_start']
     else:
         new_dict['created-to-start'] = new_dict['event_created']-new_dict['event_start']
+    new_dict['user_type_1'], new_dict['user_type_2'], new_dict['user_type_3'] = 0,0,0
+    new_dict['user_type_4'], new_dict['user_type_5'], new_dict['user_type_103'] = 0,0,0
     user_type = str(dic['user_type'])
     new_user_type = 'user_type_'+user_type
     new_dict[new_user_type]=1
-    return pd.DataFrame(new_dict, columns=new_dict.keys(), index=[0])
-
+    new_dict['num_previous_payouts']=0
+    return pd.DataFrame(new_dict, columns=['tickets_left', 'types_tickets', 'num_previous_payouts',
+       'sale_duration2', 'sale_duration', 'num_order', 'num_payouts',
+       'created-to-start', 'body_length', 'user_type_1', 'user_type_2',
+       'user_type_3', 'user_type_4', 'user_type_5', 'user_type_103'], index=[0])
 
 def get_column_names(df):
     '''
@@ -129,10 +127,19 @@ if __name__ == '__main__':
     #    'sale_duration2', 'sale_duration', 'num_order', 'num_payouts',
     #    'created-to-start', 'body_length', 'user_type_1', 'user_type_2',
     #    'user_type_3', 'user_type_4', 'user_type_5', 'user_type_103']
+
     # df = get_data()
+    # df.to_pickle('data/data.pkl')
+
+    # df = pd.read_pickle('data/data.pkl')
     # X,y = clean_data(df, return_y=True)
+    # X, scaler = scale_data(X, return_scaler=True)
+    #
+    # with open('data/model.pkl', 'rb') as f:
+    #     gb = pickle.load(f)
+
     # cols = get_column_names(X)
     # print(X.head())
 
-    # print(clean_new_data(x_json))
-    pass
+    # X_new = clean_new_data(x_json)
+    print(X_new)

@@ -12,8 +12,11 @@ def get_data(df):
     INPUT: filepath
     OUTPUT: Passes shortened dataframe to `parse_ticket_types`
     '''
+    df['fraud'] = df.acct_type.apply(lambda x: 1 if 'fraud' in x else 0)
     # reduce DF to only last eleven columns
-    df2 = df[['show_map', 'ticket_types', 'user_age', 'user_created', 'user_type','venue_address', 'venue_country', 'venue_latitude', 'venue_longitude', 'venue_name', 'venue_state', 'fraud']]
+    df2 = df[['show_map', 'ticket_types', 'user_age', 'user_created', 'user_type',
+        'venue_address', 'venue_country', 'venue_latitude', 'venue_longitude',
+        'venue_name', 'venue_state', 'fraud']]
     df2['venue_address'] = df2.venue_address.apply(lambda x: 1 if x != '' else 0)
     df2['same_country'] = df.country == df.venue_country
     df2['normal_age'] = df2.user_age.apply(lambda age: 1 if age <= 75 and age >= 15 else 0)
