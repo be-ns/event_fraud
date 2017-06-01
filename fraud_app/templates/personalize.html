@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Index{% endblock %}
+{% block title %}Personalize{% endblock %}
 {% block head %}
   {{ super() }}
   <style type="text/css">
@@ -15,7 +15,7 @@
         <form class="form-inline" action="/write" method="POST">
           <label for="benefit">Benefit of Dealing with True Cases of Fraud: </label>
           <div class="form-group">
-            <input type="text" id="benefit" name="benefit" value="" class="form-control">
+            <input type="text" id="benefit" name="benefit" value=2500 class="form-control">
           </div>
           $
 
@@ -24,12 +24,12 @@
 
           <label for="cost">Cost of Missing Fraud: </label>
           <div class="form-group">
-            <input type="text" id="cost" name="cost" value="" class="form-control">
+            <input type="text" id="cost" name="cost" value=300 class="form-control">
           </div>
           $
           <br>
           <br>
-          <input class="btn btn-lg submit-button" type="submit" value = "Go to Dashboard"/>
+          <input class="btn btn-lg submit-button" type="submit" action="/score" value = "Customize Threshold"/>
         </form>
 
 

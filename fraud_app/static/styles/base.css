@@ -62,8 +62,8 @@ body {
 
 #slider-val {
     position: absolute;
-    left: 653px;
-    top: 105px;
+    left: 649px;
+    top: 96px;
     z-index: 10;
     font-size: 20px;
 }
@@ -109,4 +109,21 @@ body {
     border-style: solid;
     border-radius: 5px;
     border-color: #E31E81;
+}
+
+#new-data-button {
+    color: #E31E81;
+}
+
+#score-title {
+    margin-top: -20px;
+    padding-top: -20px;
+}
+
+.score-text {
+    font-size: 20px;
+}
+
+#hidden-text {
+    display: none;
 }

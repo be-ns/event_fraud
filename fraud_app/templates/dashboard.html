@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Index{% endblock %}
+{% block title %}Dashboard{% endblock %}
 {% block head %}
   {{ super() }}
   <style type="text/css">
@@ -12,17 +12,23 @@
         Dashboard
     </div> -->
     <div class="jumbotron" id="dashboard-jumbo">
+        <textarea id="slider-val" rows="1" cols="1" name="thresh" form="test_form">54</textarea>
         <img id="profit-curve-pic" src={{ data }}>
     </div>
 
     <center><div class="container" id="slider"></div></center>
+
+    <form action="/score" method="POST" id="test_form">
+        <center><input class="btn btn-lg submit-button" id="new-data-button" type="submit" value = "Get New Data Point"/></center>
+        <!-- <div id="slider-val" name="comment" form="test_form">54</div> -->
+    </form>
 
     </div>
 
     <p class="important">
 
     <div id="thresh-line"></div>
-    <div id="slider-val">54</div>
+
 
 
 
@@ -34,7 +40,7 @@
             slide: function( event, ui ) {
                 var pos = $('.ui-slider-handle').offset();
                 $('#thresh-line').css({'left': pos.left+10});
-                $('#slider-val').css({'left': pos.left+1});
+                $('#slider-val').css({'left': pos.left-4});
                 // alert(pos.left)
                 x = (ui.value);
                 $('#slider-val').html(x);

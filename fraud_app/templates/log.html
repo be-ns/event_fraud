@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Index{% endblock %}
+{% block title %}Log{% endblock %}
 {% block head %}
   {{ super() }}
   <style type="text/css">
@@ -16,9 +16,9 @@
 
 <div class="container">
     <div class="jumbotron">
-        <h1>Fraud Prevention</h1>
-        <h3>Fraud is a bummer....</h3>
-        <p><a class="btn btn-lg" id="jumbotron-button" href="/personalize" role="button">Start Preventing Fraud!</a></p>
+        <h1>LOG</h1>
+        <h3>{{ data }}</h3>
+        <p><a class="btn btn-lg" id="jumbotron-button" href="/personalize" role="button">Start the Process Over Again</a></p>
     </div>
 
 
