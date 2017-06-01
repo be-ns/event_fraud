@@ -32,6 +32,9 @@ We engineered the following features:
 
 Special care was taken to ensure all variables were in the correct format (no `Boolean`s were left as `int64`'s). All data was cleaned using Pandas & Python 3.
 
+Final features list used for our model made up over 90% of our feature importances, and included the following features:  
+`['tickets_left', 'types_tickets', 'num_previous_payouts','sale_duration2', 'sale_duration', 'num_order', 'num_payouts', 'created-to-start', 'body_length', 'user_type_1', 'user_type_2','user_type_3', 'user_type_4', 'user_type_5', 'user_type_103']`
+
 _Modeling / Evaluation_:  
 We used F1-score and three fold cross validation to measure the accuracy of the model, since we had unbalanced classes. Normal accuracy meausures would be pointless, since we had less than 10% of data being categorized as Fraudulent. Class balancing was the most vital aspect for our model to be accurate. 
 
