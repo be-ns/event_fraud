@@ -8,10 +8,7 @@ import pickle
 import pandas as pd
 
 app = Flask(__name__)
-PORT = 8080
-REGISTER_URL = "http://10.3.0.79:5000/register"
-DATA = []
-TIMESTAMP = []
+
 
 
 @app.route('/')
@@ -66,4 +63,6 @@ if __name__ == '__main__':
     # Start Flask app
     with open('../data/model.pkl', 'rb') as f:
         model = pickle.load(f)
-    app.run(host='0.0.0.0', port=8150, debug=True)
+
+
+    app.run(host='ec2-52-70-42-234.compute-1.amazonaws.com', port=8150, debug=True)
