@@ -23,7 +23,7 @@ Part of the difficulty of this project was the lack of clarity on the specific f
 We defined `Fraud` in this sense as any categorical that listed the words fraud in the titl itself. This excluded titles like `spam`, `spammer`, and `tos_warn`. Without proper education on the types of fraud we were unable to decide objectively if a `spam` event was in the same category as a `fraud` event. This definition could easily be changed if further information yields new insight. 
 
 _Data Preparation_:  
-Initial EDA and scripting was done in Pandas. Care was taking to ensure balanced results by (`stratifying`)[http://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html] results in our train/test/split, and weighting the classes in our model.  
+Initial EDA and scripting was done in Pandas. Care was taking to ensure balanced results by [`stratifying`](http://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html) results in our train/test/split, and weighting the classes in our model.  
 We engineered the following features:
 * `Tickets Left` - Took the number of available tickets and subtracted the number of tickets sold.
 * `Types Tickets` - How many different ticket types were advertised. 1 indicates a 'cover charge', while 7 or 8 indicates tiered quality for event types
