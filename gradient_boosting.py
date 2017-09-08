@@ -111,8 +111,9 @@ def predict_new_proba(model, X_pred):
 	-------
 	probability of fraud
 	'''
-	X = get_data(X_pred).values
-	return model.predict_proba(X)[1]
+	prediction = model.predict_proba(X).flatten()[1]
+	return prediction
+
 
 # if __name__ == '__main__':
 	# initial trial:
@@ -127,24 +128,25 @@ def predict_new_proba(model, X_pred):
 	# F1 Score:  [ 0.86552567  0.84513806  0.83252427]
 
 	# df = get_data()
-	# data, target = clean_data(df, return_y=True)
-	# data.to_pickle('data/clean_data.pkl')
-	# target.to_pickle('data/target.pkl')
+	df = pd.read_pickle('data/data.pkl')
+	data, target = clean_data(df, return_y=True)
+	data.to_pickle('data/clean_data.pkl')
+	target.to_pickle('data/target.pkl')
 
 	# data, target = pd.read_pickle('data/clean_data.pkl'), pd.read_pickle('data/target.pkl')
 
 	# cols = get_column_names(data)
-	# X,y = data.values, target.values
+	X,y = data.values, target.values
 
-	# gb = build_model()
-	# gb = _fit(gb, X, y)
+	gb = build_model()
+	gb = _fit(gb, X, y)
 	# with open('data/model.pkl', 'wb') as f:
 	# 	pickle.dump(gb, f)
 
 	# with open('data/model.pkl', 'rb') as f:
 	# 	gb = pickle.load(f)
 
-	# score_model(gb, X, y)
+	score_model(gb, X, y)
 
 	# params = {'max depth':[3,None],'max_features':['sqrt','log2',None],\
 	#         'min_samples_leaf': [1, 2, 4],'random_state': [1]'learning_rate':\
